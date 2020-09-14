@@ -11,6 +11,7 @@
 #include <pthread.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #define LOOPS   100000
 
@@ -58,34 +59,10 @@ void *thread(void *arg)
 
 void handle_pthread_error(int err)
 {
-    char *error_type;
+    if (err != 0) {
+        fprintf(stderr, "pthread error: %s\n", strerror(err));
+        fprintf(stderr, "exiting...\n");
 
-    switch (err) {
-    case 0:
-        // No error
-        return;
-    case EAGAIN:
-        error_type = "EAGAIN";
-        break;
-    case EDEADLK:
-        error_type = "EDEADLK";
-        break;
-    case EINVAL:
-        error_type = "EINVAL";
-        break;
-    case EPERM:
-        error_type = "EPERM";
-        break;
-    case ESRCH:
-        error_type = "ESRCH";
-        break;
-    default:
-        error_type = "<unknown>";
-        break;
+        exit(EXIT_FAILURE);
     }
-
-    fprintf(stderr, "pthread error: %s\n", error_type);
-    fprintf(stderr, "exiting...\n");
-
-    exit(EXIT_FAILURE);
 }
