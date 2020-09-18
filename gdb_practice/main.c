@@ -28,7 +28,7 @@ int main(int argc, char **argv)
 {
     int i;
 
-    for (i = 0; i <= argc; i++) {
+    for (i = 0; i < argc; i++) {
         reverse(argv[i]);
         printf("argv[%d] reversed is '%s'\n", i, argv[i]);
     }
@@ -53,5 +53,8 @@ void reverse(char *str)
         tmp = str[front];
         str[front] = str[back];
         str[back] = tmp;
+
+        front++;
+        back--;
     }
 }

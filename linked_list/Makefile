@@ -1,5 +1,5 @@
 CC		= gcc
-CFLAGS	= -Wall
+CFLAGS	= -Wall -g -pedantic
 OBJECTS = linked_list.o read_line.o read_names.o
 
 read_names: $(OBJECTS)
