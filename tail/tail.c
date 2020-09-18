@@ -3,6 +3,17 @@
 
 #define N_LINES 10
 
+int is_number(char *str)
+{
+    if (*str == '\0')
+        return 0;
+
+    while (*str >= '0' && *str++ <= '9')
+        ;
+
+    return *str == '\0';
+}
+
 int main(int argc, char **argv)
 {
     char **lines = NULL;
@@ -10,10 +21,13 @@ int main(int argc, char **argv)
     size_t n = 0;
     int head = 0;
     int i;
-    int nlines = N_LINES;
+    int nlines = 0;
 
-    if (argc == 2 && argv[1][0] == '-')
+    if (argc == 2 && argv[1][0] == '-' && is_number(argv[1] + 1))
         nlines = atoi(argv[1] + 1);
+
+    if (nlines <= 0)
+        nlines = N_LINES;
 
     lines = calloc(sizeof(char **), nlines);
 
