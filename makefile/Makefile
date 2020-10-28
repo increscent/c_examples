@@ -26,7 +26,7 @@
 # for the target module2.o)
 #
 
-CC		= gcc
+CC      = gcc
 CFLAGS	= -Wall -pedantic
 OBJECTS = 537ps.o module1.o module2.o module3.o
 
