@@ -7,7 +7,7 @@
 #include <unistd.h>
 
 #define CHILD_EXIT_STATUS   123
-#define CHILD_SLEEP_TIME    5
+#define CHILD_SLEEP_TIME    2
 
 int main(int argc, char **argv)
 {
@@ -32,6 +32,9 @@ int main(int argc, char **argv)
         printf("Parent:\tI'm the parent process\n");
 
         wait(&wstatus);
+
+        printf("WIFEXITED: %d\n", WIFEXITED(wstatus));
+        printf("WEXITSTATUS: %d\n", WEXITSTATUS(wstatus));
 
         printf("Parent:\tNow the child has exited\n");
         printf("Parent:\tThe child's exit status was: %d\n", WEXITSTATUS(wstatus));
