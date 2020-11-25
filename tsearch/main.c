@@ -117,6 +117,17 @@ void delete_node(void **root, int key)
     }
 }
 
+// Free node when destroying the tree
+void free_node(void *ptr)
+{
+    struct node *node = ptr;
+
+    printf("Freeing node during tree destroy. key: %d, value: %d\n",
+            node->key, node->value);
+
+    free(node);
+}
+
 int main()
 {
     void *root;
@@ -129,6 +140,8 @@ int main()
     add_node(&root, make_node(1, 1435));
     add_node(&root, make_node(2, 1436));
     add_node(&root, make_node(1, 1437));
+    add_node(&root, make_node(4, 1438));
+    add_node(&root, make_node(5, 1439));
 
     printf("\nFINDING NODES\n------------------------------\n");
     node = find_node(&root, 1);
@@ -137,4 +150,7 @@ int main()
     printf("\nDELETING NODES\n------------------------------\n");
     delete_node(&root, 1);
     delete_node(&root, 2);
+
+    printf("\nDESTROYING TREE\n------------------------------\n");
+    tdestroy(root, free_node);
 }
