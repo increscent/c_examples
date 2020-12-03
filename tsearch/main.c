@@ -66,6 +66,10 @@ void add_node(void **root, struct node *node)
         exit_with_message("Insufficient memory");
     } else {
         // Check if an node with the same key already existed
+        // Note: the tsearch interface is quite ugly
+        // Instead of returning a pointer to the node passed in as the key
+        // in the first parameter, the tsearch function returns a pointer to a
+        // struct whose first entry is a pointer to the key.
         existing = *(struct node **)result;
 
         if (existing != node) {
