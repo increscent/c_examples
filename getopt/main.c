@@ -6,7 +6,7 @@ int main(int argc, char **argv) {
     opterr = 0;
 
     int c;
-    while ((c = getopt(argc, argv, "a::b:")) != -1) {
+    while ((c = getopt(argc, argv, "a:b:")) != -1) {
         switch (c) {
             case 'a':
                 printf("got -a, argument: %s\n", optarg);
@@ -24,5 +24,9 @@ int main(int argc, char **argv) {
                 printf("got %c\n", c);
                 break;
         }
+    }
+
+    for (int i = 0; i < argc; i++) {
+        printf("argv[%i] = %s\n", i, argv[i]);
     }
 }
